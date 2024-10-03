@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "./_components/Navbar";
 import { Sidebar } from "./_components/Sidebar";
 
@@ -15,6 +16,7 @@ export default function DashboardLayout({
         <Sidebar />
       </div>
       <main className="md:ml-56 pt-[80px] h-full">{children}</main>
+      <Toaster />
     </div>
   );
 }
