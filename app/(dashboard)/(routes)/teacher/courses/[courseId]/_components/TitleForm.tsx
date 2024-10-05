@@ -37,6 +37,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 
   const toggleEdit = () => {
     setIsEditing((prev) => !prev);
+    form.reset();
   };
 
   const { isSubmitting, isValid } = form.formState;
