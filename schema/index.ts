@@ -17,3 +17,9 @@ export const descriptionFormSchema = z.object({
     message: "Description is required",
   }),
 });
+
+export const imageFormSchema = z.object({
+  imageUrl: z.string().min(1, {
+    message: "Image is required",
+  }),
+});
