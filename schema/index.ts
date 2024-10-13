@@ -23,3 +23,7 @@ export const imageFormSchema = z.object({
     message: "Image is required",
   }),
 });
+
+export const categoryFormSchema = z.object({
+  categoryId: z.string().min(1),
+})
