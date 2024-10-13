@@ -31,3 +31,9 @@ export const categoryFormSchema = z.object({
 export const priceFormSchema = z.object({
   price: z.coerce.number(),
 })
+
+export const attachmentFormSchema = z.object({
+  url: z.string().min(1, {
+    message: "Url is required",
+  }),
+});
