@@ -27,3 +27,7 @@ export const imageFormSchema = z.object({
 export const categoryFormSchema = z.object({
   categoryId: z.string().min(1),
 })
+
+export const priceFormSchema = z.object({
+  price: z.coerce.number(),
+})
