@@ -14,12 +14,13 @@ import { chapterFormSchema } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Chapter, Course } from "@prisma/client";
 import axios from "axios";
-import { PlusCircle } from "lucide-react";
+import { Loader2, PlusCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import { ChapterList } from "./ChapterList";
 
 interface ChapterFormProps {
   initialData: Course & { chapters: Chapter[] };
@@ -56,8 +57,33 @@ export const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
     }
   };
 
+  const onReorder = async (updateData: { id: string; position: number }[]) => {
+    try {
+      setIsUpdating(true);
+      await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
+        list: updateData,
+      });
+
+      toast.success("Chapter reorder successfully");
+      router.refresh();
+    } catch {
+      toast.error("Something went wrong while reordering");
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  const onEdit = (id: string) => {
+    router.push(`/teacher/courses/${courseId}/chapters/${id}`);
+  };
+
   return (
-    <div className="mt-6 bg-slate-100 rounded-md p-4">
+    <div className="relative mt-6 bg-slate-100 rounded-md p-4">
+      {isUpdating && (
+        <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-md flex items-center justify-center">
+          <Loader2 className="animate-spin h-6 w-6 text-sky-700" />
+        </div>
+      )}
       <div className="font-medium flex items-center justify-between">
         Course chapters
         <Button onClick={toggleCreating} variant={"ghost"}>
@@ -107,7 +133,11 @@ export const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
           )}
         >
           {!initialData.chapters.length && "No chapters created yet"}
-          {/* TODO: Add list of chapters here */}
+          <ChapterList
+            onEdit={onEdit}
+            onReorder={onReorder}
+            items={initialData.chapters || []}
+          />
         </div>
       )}
       {!isCreating && (
