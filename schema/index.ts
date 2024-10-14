@@ -26,14 +26,20 @@ export const imageFormSchema = z.object({
 
 export const categoryFormSchema = z.object({
   categoryId: z.string().min(1),
-})
+});
 
 export const priceFormSchema = z.object({
   price: z.coerce.number(),
-})
+});
 
 export const attachmentFormSchema = z.object({
   url: z.string().min(1, {
     message: "Url is required",
+  }),
+});
+
+export const chapterFormSchema = z.object({
+  title: z.string().min(1, {
+    message: "Title is required",
   }),
 });
