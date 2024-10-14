@@ -43,3 +43,8 @@ export const chapterFormSchema = z.object({
     message: "Title is required",
   }),
 });
+
+export const chapterAccessFormSchema = z.object({
+  isFree: z.boolean().default(false),
+});
+
