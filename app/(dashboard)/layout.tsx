@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "./_components/Navbar";
 import { Sidebar } from "./_components/Sidebar";
+import { ConfettiProvider } from "@/provider/confettiProvider";
 
 export default function DashboardLayout({
   children,
@@ -15,7 +16,10 @@ export default function DashboardLayout({
       <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
         <Sidebar />
       </div>
-      <main className="md:ml-56 pt-[80px] h-full">{children}</main>
+      <main className="md:ml-56 pt-[80px] h-full">
+        <ConfettiProvider />
+        {children}
+      </main>
       <Toaster />
     </div>
   );
