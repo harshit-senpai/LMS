@@ -48,3 +48,6 @@ export const chapterAccessFormSchema = z.object({
   isFree: z.boolean().default(false),
 });
 
+export const videoFormSchema = z.object({
+  videoUrl: z.string().min(1),
+});
