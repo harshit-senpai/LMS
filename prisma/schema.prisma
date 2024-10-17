@@ -33,6 +33,7 @@ model Course {
   updatedAt DateTime @updatedAt
 
   @@index([categoryId])
+  @@index([title])
 }
 
 model Category {
