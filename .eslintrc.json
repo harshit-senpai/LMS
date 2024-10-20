@@ -3,6 +3,7 @@
   "rules": {
     "no-var": "off",
     "prefer-const": "off",
-    "@typescript-eslint/no-non-null-asserted-optional-chain": "off"
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
